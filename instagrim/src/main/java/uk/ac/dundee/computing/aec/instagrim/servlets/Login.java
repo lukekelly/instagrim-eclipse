@@ -28,7 +28,11 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
 
-    Cluster cluster=null;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	Cluster cluster=null;
 
 
     public void init(ServletConfig config) throws ServletException {

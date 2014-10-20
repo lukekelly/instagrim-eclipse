@@ -22,17 +22,21 @@
         <nav>
             <ul>
 
-               
+               <li><a href="Profile.jsp">Profile</a></li>
                 <li><a href="upload.jsp">Upload</a></li>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                         if (lg != null) {
                             String UserName = lg.getUsername();
-                            if (lg.getlogedin()) {
+                            if (lg.getloggedin()) {
                     %>
+                    
+       
 
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li><a href= "logout.jsp">Log Out</a></li>
+             
                     <%}
                             }else{
                                 %>
