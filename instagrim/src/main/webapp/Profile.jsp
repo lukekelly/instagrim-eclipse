@@ -32,12 +32,11 @@
         %>
         
          <article>
-            <h3>Profile Picture</h3>
             <form method="POST" enctype="multipart/form-data" action="Image">
-                File to upload: <input type="file" name="upfile"><br/>
+                <input type="file" name="upfile"><br/>
 
                 <br/>
-                <input type="submit" value="Press"> to update Profile Picture!
+                <input type="submit" value="Press">
             </form>
         </article>
        

@@ -1,7 +1,7 @@
 package uk.ac.dundee.computing.aec.instagrim.models;
 
 /*
- * Expects a cassandra columnfamily defined as
+ * Expects a cassandra column family defined as
  * use keyspace2;
  CREATE TABLE Tweets (
  user varchar,
@@ -123,7 +123,7 @@ public class PicModel {
     public static BufferedImage createThumbnail(BufferedImage img) {
         img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_GRAYSCALE);
         // Let's add a little border before we return result.
-        return pad(img, 2);
+        return pad(img, 10);
     }
     
    public static BufferedImage createProcessed(BufferedImage img) {

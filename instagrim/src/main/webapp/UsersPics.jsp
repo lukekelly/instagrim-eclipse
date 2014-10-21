@@ -30,7 +30,7 @@
         </nav>
  
         <article>
-            <h1>Your Pics</h1>
+            <h1>Your Pictures</h1>
         <%
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
             if (lsPics == null) {
@@ -52,7 +52,8 @@
         </article>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
+            	<li class="footer"><a href="/Instagrim">Home</a></li>
+                <li>&COPY; Luke Kelly</li>   
             </ul>
         </footer>
     </body>
