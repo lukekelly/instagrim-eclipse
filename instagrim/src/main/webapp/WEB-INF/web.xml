@@ -784,4 +784,14 @@ standard deployment descriptor.
     <servlet-name>ProfilePic</servlet-name>
     <url-pattern>/ProfilePic</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogOut</display-name>
+    <servlet-name>LogOut</servlet-name>
+    <servlet-class>uk.ac.dundee.computing.aec.instagrim.servlets.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogOut</servlet-name>
+    <url-pattern>/LogOut</url-pattern>
+  </servlet-mapping>
 </web-app>

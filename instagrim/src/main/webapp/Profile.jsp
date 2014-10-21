@@ -1,7 +1,7 @@
 <%-- 
-    Document   : Profile
+    Document   : Profile Page
     Created on : Sep 24, 2014, 2:52:48 PM
-    Author     : Administrator
+    Author     : Luke Kelly
 --%>
 
 <%@page import="java.util.*"%>
@@ -17,9 +17,20 @@
     <body>
         <header>
         
-        <h1>InstaGrim ! </h1>
-        <h2></h2>
+        <h1>Instagrim</h1>
         </header>
+        
+            
+          <%   
+                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        if (lg != null) {
+                            String UserName = lg.getUsername();
+                            if (lg.getloggedin()) {
+                    %>
+        <h2> Welcome <%=lg.getUsername()%>! </h2> 
+       <%}}
+        %>
+        
          <article>
             <h3>Profile Picture</h3>
             <form method="POST" enctype="multipart/form-data" action="Image">
@@ -28,16 +39,8 @@
                 <br/>
                 <input type="submit" value="Press"> to update Profile Picture!
             </form>
-
         </article>
-        <% 
-        LoggedIn loggedIn = (LoggedIn) request.getAttribute("username");
-        //String user = LoggedIn.getUsername();
-        %>
-         <ul>
-        // <li>Profile: <%=user%>></li>
-         </ul>
-        
+       
         <nav>
             <ul>
                 <li class="nav"><a href="/Instagrim/upload.jsp">Upload</a></li>
