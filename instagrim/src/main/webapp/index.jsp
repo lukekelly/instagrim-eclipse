@@ -51,7 +51,7 @@
         <footer>
             <ul>
                 <li class="footer"><a href="/Instagrim">Home</a></li>
-                <li>&COPY; Andy C</li>
+                <li>&COPY; Luke Kelly</li>
             </ul>
         </footer>
     </body>

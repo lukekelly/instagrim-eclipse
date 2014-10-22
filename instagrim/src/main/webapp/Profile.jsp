@@ -25,9 +25,15 @@
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                         if (lg != null) {
                             String UserName = lg.getUsername();
+                            String firstName = lg.getFirstName();
+                            String secondName = lg.getSecondName();
+                            String email = lg.getEmail();
                             if (lg.getloggedin()) {
                     %>
         <h2> Welcome <%=lg.getUsername()%>! </h2> 
+         		<li> First Name:<%=lg.getFirstName()%> </li>
+                <li> Second Name:<%=lg.getSecondName()%> </li>
+                <li> Email Address:<%=lg.getEmail()%> </li>
        <%}}
         %>
         
@@ -37,6 +43,7 @@
 
                 <br/>
                 <input type="submit" value="Press">
+                     
             </form>
         </article>
        

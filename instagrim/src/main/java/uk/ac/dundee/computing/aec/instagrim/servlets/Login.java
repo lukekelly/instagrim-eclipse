@@ -65,7 +65,7 @@ public class Login extends HttpServlet {
 		        	        }
 		        	        else if (password.equals(""))
 		        	        {
-		        	            error("You must enter a passweord", response);
+		        	            error("You must enter a password", response);
 		        	            return;
 		        	        }
 		            
@@ -77,8 +77,9 @@ public class Login extends HttpServlet {
         System.out.println("Session in servlet "+session);
         if (isValid){
             LoggedIn lg= new LoggedIn();
-            lg.setLogedin();
+            lg.setLoggedin();
             lg.setUsername(username);
+            
             //request.setAttribute("LoggedIn", lg);
             
             session.setAttribute("LoggedIn", lg);

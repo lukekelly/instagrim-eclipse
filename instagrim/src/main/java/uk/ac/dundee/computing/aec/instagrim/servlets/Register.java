@@ -47,6 +47,9 @@ public class Register extends HttpServlet {
             throws ServletException, IOException {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
+        String firstName=request.getParameter("firstName");
+        String secondName=request.getParameter("secondName");
+        String email=request.getParameter("email");
         
         if (username.equals(""))
         {
@@ -61,7 +64,7 @@ public class Register extends HttpServlet {
         
         User us=new User();
         us.setCluster(cluster);
-        us.RegisterUser(username, password);
+        us.RegisterUser(username, password, firstName, secondName, email);
         
 	response.sendRedirect("/Profile");
         
@@ -77,12 +80,12 @@ public class Register extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-    private void error(String mess, HttpServletResponse response) throws ServletException, IOException
+    private void error(String fault, HttpServletResponse response) throws ServletException, IOException
     {
     	 PrintWriter out = null;
     	 out = new PrintWriter(response.getOutputStream());
-    	 out.println("<h1>You have a na error in your input</h1>");
-    	 out.println("<h2>" + mess + "</h2>");
+    	 out.println("<h1>You have made a mistake, please try again</h1>");
+    	 out.println("<h2>" + fault + "</h2>");
     	 out.close();
     	 return;
     }
