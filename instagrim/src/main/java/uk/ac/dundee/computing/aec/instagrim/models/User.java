@@ -65,10 +65,13 @@ public class User {
                 boundStatement.bind( // here you are binding the 'boundStatement'
                         username));
         if (rs.isExhausted()) {
-            System.out.println("No Images returned");
+            System.out.println("No user found!");
             return false;
-        } else {
-            for (Row row : rs) {
+        } 
+        else 
+        {
+            for (Row row : rs) 
+            {
                
                 String StoredPass = row.getString("password");
                 if (StoredPass.compareTo(EncodedPassword) == 0)

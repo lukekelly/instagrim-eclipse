@@ -19,8 +19,9 @@ public class LoggedIn {
     @SuppressWarnings("unused")
 	private String username;
     private String firstName;
+    private String secondName;
     
-    public void LoggedIn(){
+    public LoggedIn(){
         
     }
     
@@ -32,14 +33,14 @@ public class LoggedIn {
     }
     
     public void setFirstname(String firstName){
-        this.FirstName=firstName;
+        this.firstName=firstName;
     }
     public String getFirstName(){
-        return FirstName;
+        return firstName;
     }
     
     public void setSecondName(String secondName){
-        this.SecondName=secondName;
+        this.secondName=secondName;
     }
     public String getSecondName(){
         return SecondName;
@@ -66,9 +67,10 @@ public class LoggedIn {
         return loggedin;
     }
     
-    public void setUser (String username, String firstName)
+    public void setUser (String username, String firstName, String secondName)
     {
     	this.username=username;
     	this.firstName=firstName;
+    	this.secondName=secondName;
     }
 }
