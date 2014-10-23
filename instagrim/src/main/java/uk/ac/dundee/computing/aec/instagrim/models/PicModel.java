@@ -50,7 +50,7 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user) {
+    public void insertPic(byte[] b, String type, String name, String user, boolean profilePic) {
         try {
             Convertors convertor = new Convertors();
 
@@ -72,7 +72,7 @@ public class PicModel {
             int processedlength=processedb.length;
             Session session = cluster.connect("instagrim");
 
-            PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement psInsertPic = session.prepare("insert into pics (picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
             PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added) values(?,?,?)");
             BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
             BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
@@ -80,6 +80,15 @@ public class PicModel {
             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
             session.execute(bsInsertPicToUser.bind(picid, user, DateAdded));
+            
+            if (profilePic)
+            {
+            	PreparedStatement psProfilePic = session.prepare("insert into profilePic (picid, user, pic_added) values(?,?,?)");
+            	BoundStatement bsProfilePic = new BoundStatement(psProfilePic);
+            	session.execute(bsProfilePic.bind(picid, user, DateAdded));
+            }
+            
+            
             session.close();
 
         } catch (IOException ex) {

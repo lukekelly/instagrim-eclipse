@@ -14,13 +14,14 @@
     </head>
     <body>
         <header>
-        <h1>InstaGrim ! </h1>
+        <h1>Instagrim</h1>
         <h2>Your world in Black and White</h2>
         </header>
         <nav>
             <ul>
                 
-                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                 <li class="nav"><a href="/Instagrim">Home</a></li>
             </ul>
         </nav>
        
@@ -30,9 +31,8 @@
                 <ul>
                     <li>User Name: <input type="text" name="username"></li>
                     <li>Password: <input type="password" name="password"></li>
-                    <li>First Name: <input type="text" name="firstName"></li>
-                    <li>Second Name: <input type="text" name="secondName"></li>
-                    <li>Email: <input type="text" name="email"></li>
+                    <li>First Name: <input type="text" name="name"></li>
+                    <li>Second Name: <input type="text" name="surname"></li>
                 </ul>
                 <br/>
                 <input type="submit" value="Register"> 
@@ -41,7 +41,7 @@
         </article>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
+                <li>&COPY; Luke Kelly</li>
             </ul>
         </footer>
     </body>

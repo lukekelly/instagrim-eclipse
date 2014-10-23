@@ -23,9 +23,11 @@
         
         <nav>
             <ul>
+            <li class="footer"><a href="/Instagrim">Home</a></li>
             	<li class="nav"><a href="Profile.jsp">Profile</a></li>
                 <li class="nav"><a href="/Instagrim/upload.jsp">Upload</a></li>
                 <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                <li>&COPY; Luke Kelly</li> 
             </ul>
         </nav>
  
@@ -35,7 +37,7 @@
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
             if (lsPics == null) {
         %>
-        <p>No Pictures found</p>
+        <p>No Pictures Found</p>
         <%
         } else {
             Iterator<Pic> iterator;
@@ -50,11 +52,5 @@
             }
         %>
         </article>
-        <footer>
-            <ul>
-            	<li class="footer"><a href="/Instagrim">Home</a></li>
-                <li>&COPY; Luke Kelly</li>   
-            </ul>
-        </footer>
     </body>
 </html>

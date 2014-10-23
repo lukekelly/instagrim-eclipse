@@ -24,7 +24,7 @@
         </nav>
  
         <article>
-            <h3>File Upload</h3>
+            <h5>File Upload</h5>
             <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br/>
 

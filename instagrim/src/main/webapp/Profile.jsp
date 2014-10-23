@@ -25,20 +25,17 @@
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                         if (lg != null) {
                             String UserName = lg.getUsername();
-                            String firstName = lg.getFirstName();
-                            String secondName = lg.getSecondName();
-                            String email = lg.getEmail();
                             if (lg.getloggedin()) {
                     %>
         <h2> Welcome <%=lg.getUsername()%>! </h2> 
-         		<li> First Name:<%=lg.getFirstName()%> </li>
-                <li> Second Name:<%=lg.getSecondName()%> </li>
-                <li> Email Address:<%=lg.getEmail()%> </li>
+         		<li> First Name:<%=lg.getname()%> </li>
+                <li> Second Name:<%=lg.getsurname()%> </li>
        <%}}
         %>
         
          <article>
-            <form method="POST" enctype="multipart/form-data" action="Image">
+         <h3>Upload Profile Picture</h3>
+            <form method="POST" enctype="multipart/form-data" action="profilePic">
                 <input type="file" name="upfile"><br/>
 
                 <br/>
@@ -49,13 +46,14 @@
        
         <nav>
             <ul>
+            	<li class="nav"><a href="/Instagrim">Home</a></li>
                 <li class="nav"><a href="/Instagrim/upload.jsp">Upload</a></li>
                 <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
             </ul>
         </nav>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
+                <li>&COPY; Luke Kelly</li>
             </ul>
         </footer>
     </body>

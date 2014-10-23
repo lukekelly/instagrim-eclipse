@@ -6,18 +6,19 @@
 
 package uk.ac.dundee.computing.aec.instagrim.servlets;
 
-import com.datastax.driver.core.Cluster;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
+
+import com.datastax.driver.core.Cluster;
 
 /**
  *
@@ -25,7 +26,11 @@ import uk.ac.dundee.computing.aec.instagrim.models.User;
  */
 @WebServlet(name = "Register", urlPatterns = {"/Register"})
 public class Register extends HttpServlet {
-    Cluster cluster=null;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	Cluster cluster=null;
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
@@ -47,9 +52,9 @@ public class Register extends HttpServlet {
             throws ServletException, IOException {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        String firstName=request.getParameter("firstName");
-        String secondName=request.getParameter("secondName");
-        String email=request.getParameter("email");
+        String name=request.getParameter("name");
+        String surname=request.getParameter("surname");
+      
         
         if (username.equals(""))
         {
@@ -64,9 +69,9 @@ public class Register extends HttpServlet {
         
         User us=new User();
         us.setCluster(cluster);
-        us.RegisterUser(username, password, firstName, secondName, email);
+        us.RegisterUser(username, password, name, surname);
         
-	response.sendRedirect("/Profile");
+	response.sendRedirect("/Instagrim");
         
     }
 
@@ -85,7 +90,6 @@ public class Register extends HttpServlet {
     	 PrintWriter out = null;
     	 out = new PrintWriter(response.getOutputStream());
     	 out.println("<h1>You have made a mistake, please try again</h1>");
-    	 out.println("<h2>" + fault + "</h2>");
     	 out.close();
     	 return;
     }
