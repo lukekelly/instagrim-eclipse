@@ -11,6 +11,7 @@ import java.security.NoSuchAlgorithmException;
 
 import uk.ac.dundee.computing.aec.instagrim.lib.AeSimpleSHA1;
 import uk.ac.dundee.computing.aec.instagrim.stores.userProfiles;
+import java.util.LinkedList;
 
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.Cluster;
@@ -69,25 +70,13 @@ public class User {
         if (rs.isExhausted()) {
             System.out.println("No user found!");
             return false;
-        } 
-        else 
-        {
-            for (Row row : rs) 
-            {
+        } else {
+            for (Row row : rs) {
                
                 String StoredPass = row.getString("password");
                 if (StoredPass.compareTo(EncodedPassword) == 0)
                     return true;
-              
-                userProfiles userProf = new userProfiles();
-                String login = row.getString("login");
-                String name = row.getString("first_name");
-                String surname = row.getString("second_name");
-                userProf.setLogin(login);
-                userProf.setname(name);
-                userProf.setsurname(surname);
             }
-            
         }
    
     
@@ -96,6 +85,42 @@ public class User {
        public void setCluster(Cluster cluster) {
         this.cluster = cluster;
     }
-
-    
+        
+        
+        public LinkedList<userProfiles> getUserInfo(String user)
+        {
+        	java.util.LinkedList<userProfiles> userProfile = new java.util.LinkedList<>();
+            
+            Session session = cluster.connect("instagrim");
+            PreparedStatement ps = session.prepare("select login, addresses, email, first_name, last_name, profile_pic from userprofiles where login = ?");
+            BoundStatement boundStatement = new BoundStatement(ps);
+            ResultSet rs = null;
+            rs = session.execute(boundStatement.bind(user));
+            
+            if (rs.isExhausted()) {
+                System.out.println("No profiles returned for user: " + user);
+                return null;
+        }
+        
+        else 
+        {
+            for (Row row : rs) 
+            {
+                userProfiles profile = new userProfiles();
+                
+                String username = row.getString("login");
+                String name = row.getString("first_name");
+                String surname = row.getString("last_name");
+                java.util.UUID proPic = row.getUUID("proPic");
+                
+                profile.setUsername(username);
+                profile.setname(name);
+                profile.setsurname(surname);
+                profile.setProfilePic(proPic);
+                
+                userProfile.push(profile);
+            }   
+        }
+        return userProfile;
+        }
 }

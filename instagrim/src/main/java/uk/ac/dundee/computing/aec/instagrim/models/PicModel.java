@@ -83,9 +83,9 @@ public class PicModel {
             
             if (profilePic)
             {
-            	PreparedStatement psProfilePic = session.prepare("insert into profilePic (picid, user, pic_added) values(?,?,?)");
+            	PreparedStatement psProfilePic = session.prepare("update userprofiles set profile_pic = ? where login ?");
             	BoundStatement bsProfilePic = new BoundStatement(psProfilePic);
-            	session.execute(bsProfilePic.bind(picid, user, DateAdded));
+            	session.execute(bsProfilePic.bind(picid, user));
             }
             
             

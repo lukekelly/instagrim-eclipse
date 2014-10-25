@@ -1,35 +1,31 @@
 package uk.ac.dundee.computing.aec.instagrim.stores;
 
 import java.io.IOException;
+import java.util.UUID;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class userProfiles
- */
-@WebServlet("/userProfiles")
-public class userProfiles extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	String login = null;
+public class userProfiles {
+	String username = null;
     String name = null;
     String surname = null;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public userProfiles() {
+    java.util.UUID proPic = null;
+   
+    public void userProfiles() {
      
     }
     
-    public String getLogin()
+    public String getUsername()
     {
-    	return login;
+    	return username;
     }
     
-    public void setLogin(String login){
-    	this.login=login;
+    public void setUsername(String username){
+    	this.username=username;
     }
     
     public String getname()
@@ -51,5 +47,20 @@ public class userProfiles extends HttpServlet {
     {
     	this.surname=surname;
     }
+    
+    public UUID getProfilePic()
+    {
+        return proPic;
+    }
+    	
+    public void setProfilePic(UUID proPic) 
+    {
+    	this.proPic = proPic;
+    }
+
+	public static void push(userProfiles profile) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

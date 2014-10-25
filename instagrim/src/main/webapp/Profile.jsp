@@ -7,6 +7,7 @@
 <%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn" %>
+<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.userProfiles"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,17 +22,12 @@
         </header>
         
             
-          <%   
-                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                        if (lg != null) {
-                            String UserName = lg.getUsername();
-                            if (lg.getloggedin()) {
-                    %>
-        <h2> Welcome <%=lg.getUsername()%>! </h2> 
-         		<li> First Name:<%=lg.getname()%> </li>
-                <li> Second Name:<%=lg.getsurname()%> </li>
-       <%}}
+        <%
+        java.util.LinkedList<userProfiles> userProfile = (java.util.LinkedList<userProfiles>) request.getAttribute("userProfiles");
+        
+        userProfiles user = (userProfiles) userProfile.get(0);
         %>
+        <h2><%=user.getUsername()%></h2>
         
          <article>
          <h3>Upload Profile Picture</h3>

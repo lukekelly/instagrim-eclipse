@@ -28,7 +28,7 @@
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                         if (lg != null) {
-                            String UserName = lg.getUsername();
+                            String username = lg.getUsername();
                             //String name = lg.getname();
                             //String surname = lg.getsurname();
    
