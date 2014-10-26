@@ -89,10 +89,10 @@ public class User {
         
         public LinkedList<userProfiles> getUserInfo(String user)
         {
-        	java.util.LinkedList<userProfiles> userProfile = new java.util.LinkedList<>();
+        	java.util.LinkedList<userProfiles> userProfile = null;
             
             Session session = cluster.connect("instagrim");
-            PreparedStatement ps = session.prepare("select login, addresses, email, first_name, last_name, profile_pic from userprofiles where login = ?");
+            PreparedStatement ps = session.prepare("select login, first_name, last_name from userprofiles where login = ?");
             BoundStatement boundStatement = new BoundStatement(ps);
             ResultSet rs = null;
             rs = session.execute(boundStatement.bind(user));
@@ -104,20 +104,20 @@ public class User {
         
         else 
         {
+        	System.out.println ("found profile" + user);
             for (Row row : rs) 
             {
+            	userProfile = new java.util.LinkedList<userProfiles>();
                 userProfiles profile = new userProfiles();
                 
                 String username = row.getString("login");
                 String name = row.getString("first_name");
                 String surname = row.getString("last_name");
-                java.util.UUID proPic = row.getUUID("proPic");
-                
+        
                 profile.setUsername(username);
                 profile.setname(name);
                 profile.setsurname(surname);
-                profile.setProfilePic(proPic);
-                
+                       
                 userProfile.push(profile);
             }   
         }

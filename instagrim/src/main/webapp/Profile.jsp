@@ -24,7 +24,6 @@
             
         <%
         java.util.LinkedList<userProfiles> userProfile = (java.util.LinkedList<userProfiles>) request.getAttribute("userProfiles");
-        
         userProfiles user = (userProfiles) userProfile.get(0);
         %>
         <h2><%=user.getUsername()%></h2>

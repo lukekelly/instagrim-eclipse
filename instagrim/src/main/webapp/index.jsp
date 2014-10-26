@@ -22,8 +22,7 @@
         <nav>
             <ul>
 
-               <li><a href="Profile.jsp">Profile</a></li>
-                <li><a href="upload.jsp">Upload</a></li>
+               
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -36,7 +35,8 @@
                     %>
                     
        
-
+				<li><a href="/Instagrim/Profile/<%=lg.getUsername()%>">Profile</a></li>
+                <li><a href="upload.jsp">Upload</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li><a href= "logout.jsp">Log Out</a></li>
              
