@@ -9,17 +9,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Instagrim</title>
+        <title>Instagrim: Login</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
 
     </head>
     <body>
         <header>
-        <h1>InstaGrim ! </h1>
+        <h1>Instagrim</h1>
         <h2>Your world in Black and White</h2>
         </header>
         <nav>
             <ul>
+            	<li class="footer"><a href="/Instagrim">Home</a></li>
                 <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
             </ul>
         </nav>
@@ -38,7 +39,7 @@
         </article>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
+                <li>&COPY; Luke Kelly</li>
             </ul>
         </footer>
     </body>

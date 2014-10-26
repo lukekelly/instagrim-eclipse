@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Instagrim</title>
+        <title>Instagrim: Register</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
@@ -33,10 +33,15 @@
                     <li>Password: <input type="password" name="password"></li>
                     <li>First Name: <input type="text" name="name"></li>
                     <li>Second Name: <input type="text" name="surname"></li>
-                </ul>
+                    <li>Email: <input type="text" name="email"></li>
+                    <li>Bio: <input type="text" name="bio"></li>
+                    
+                 <h3>Upload Profile Picture</h3>
+            	<form method="POST" enctype="multipart/form-data" action="UploadProfilePicture">
+                <input type="file" name="upfile"><br/>
+
                 <br/>
-                <input type="submit" value="Register"> 
-            </form>
+                <input type="submit" value="Upload">
 
         </article>
         <footer>

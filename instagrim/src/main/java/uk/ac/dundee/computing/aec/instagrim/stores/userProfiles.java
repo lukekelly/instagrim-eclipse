@@ -1,6 +1,7 @@
 package uk.ac.dundee.computing.aec.instagrim.stores;
 
 import java.io.IOException;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -13,7 +14,9 @@ public class userProfiles {
 	String username = null;
     String name = null;
     String surname = null;
-    java.util.UUID proPic = null;
+    String bio = null;
+    String email = null;
+    private UUID  proPic= null;
    
     public void userProfiles() {
      
@@ -48,14 +51,35 @@ public class userProfiles {
     	this.surname=surname;
     }
     
-    public UUID getProfilePic()
+    public String getBio()
     {
-        return proPic;
+    	return bio;
     }
-    	
-    public void setProfilePic(UUID proPic) 
+    
+    public void setBio(String bio)
     {
-    	this.proPic = proPic;
+    	this.bio=bio;
+    }
+    
+    
+    public void setEmail(String email)
+    {
+    	this.email=email;
+    }
+    
+    public String getEmail(String email)
+    {
+    	return email;
+    }
+    
+    public void setUUID(UUID proPic)
+    {
+    	this.proPic=proPic;
+    }
+    
+    public UUID getUUID()
+    {
+    	return proPic;
     }
 
 	public static void push(userProfiles profile) {

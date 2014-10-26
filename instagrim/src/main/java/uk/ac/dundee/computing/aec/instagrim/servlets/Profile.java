@@ -46,17 +46,7 @@ public class Profile extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // RequestDispatcher rd = request.getRequestDispatcher("/Profile.jsp");
-        //rd.forward(request, response);
-    	
-    	 String args[] = Convertors.SplitRequestPath(request);
-         
-         User us = new User();
-         us.setCluster(cluster);
-         
-         java.util.LinkedList<userProfiles> pp = us.getUserInfo(args[2]);
-         System.out.println ("pp =" + pp);
-         request.setAttribute("userProfiles", pp);
+       
          
          RequestDispatcher rd = request.getRequestDispatcher("/Profile.jsp");
          rd.forward(request, response);
@@ -73,20 +63,29 @@ public class Profile extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	
-    	processRequest (request, response);
-       
+    	//processRequest (request, response);
+    	
+    	String args[] = Convertors.SplitRequestPath(request);
+    	String user = args[2];
+    	
+    	getUserProfile(user, request, response);
+    }
+    
+    private void getUserProfile(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    User us = new User();
+    us.setCluster(cluster);
+    java.util.LinkedList<userProfiles> userInfo = us.getUserInfo(User);
+    RequestDispatcher rd = request.getRequestDispatcher("/Profile.jsp");
+    request.setAttribute("userInfo", userInfo);
+    rd.forward(request, response);
     }
     
     @Override
    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    
-    		processRequest (request, response);
-    	
-           // RequestDispatcher rd = request.getRequestDispatcher("/Profile.jsp");
-            //rd.forward(request, response);
-        }
-    
+            throws ServletException, IOException 
+    {    
+    		processRequest (request, response);		
+    }
 
     /**
      * Returns a short description of the servlet.

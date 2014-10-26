@@ -16,29 +16,27 @@
     </head>
     <body>
         <header>
-            <h1>InstaGrim ! </h1>
+            <h1>Instagrim!</h1>
             <h2>Your world in Black and White</h2>
         </header>
         <nav>
             <ul>
-
-               
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                         if (lg != null) {
                             String username = lg.getUsername();
-                            //String name = lg.getname();
-                            //String surname = lg.getsurname();
    
                             if (lg.getloggedin()) {
                     %>
                     
-       
+       			<li><a href="/Instagrim">Home</a></li>
 				<li><a href="/Instagrim/Profile/<%=lg.getUsername()%>">Profile</a></li>
                 <li><a href="upload.jsp">Upload</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-                <li><a href= "logout.jsp">Log Out</a></li>
+                <form method="POST"  action="logout">
+                <input type="submit" value="logout"> 
+                </form>
              
                     <%}
                             }else{
@@ -53,7 +51,6 @@
         </nav>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
                 <li>&COPY; Luke Kelly</li>
             </ul>
         </footer>

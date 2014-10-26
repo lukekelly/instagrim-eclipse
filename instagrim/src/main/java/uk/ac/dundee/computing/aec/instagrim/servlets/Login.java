@@ -80,8 +80,6 @@ public class Login extends HttpServlet {
             lg.setLoggedin();
             lg.setUsername(username);
             
-            //request.setAttribute("LoggedIn", lg);
-            
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");

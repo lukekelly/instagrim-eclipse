@@ -36,9 +36,6 @@ public class Register extends HttpServlet {
         cluster = CassandraHosts.getCluster();
     }
 
-
-
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -54,6 +51,8 @@ public class Register extends HttpServlet {
         String password=request.getParameter("password");
         String name=request.getParameter("name");
         String surname=request.getParameter("surname");
+        String email=request.getParameter("email");
+        String bio=request.getParameter("bio");
       
         
         if (username.equals(""))
@@ -69,21 +68,18 @@ public class Register extends HttpServlet {
         
         User us=new User();
         us.setCluster(cluster);
-        us.RegisterUser(username, password, name, surname);
+        boolean userExists = us.existingUser(username);
         
-	response.sendRedirect("/Instagrim");
-        
+        if (userExists == true)
+        {
+        	us.RegisterUser(username, password, username, surname, email, bio);
+        	response.sendRedirect("/Instagrim");
+        }
+        else
+        {
+        	response.sendRedirect("/Instagrim");
+        }   
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
     
     private void error(String fault, HttpServletResponse response) throws ServletException, IOException
     {
