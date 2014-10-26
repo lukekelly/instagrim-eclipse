@@ -27,8 +27,11 @@
         userProfiles user = (userProfiles) userProfile.get(0);
         %>
         <h2><%=user.getUsername()%></h2>
+        <article>
+        <li>First Name: <%=user.getname()%></li>
+        <li>Second Name: <%=user.getsurname()%></li>
         
-         <article>
+         
          <h3>Upload Profile Picture</h3>
             <form method="POST" enctype="multipart/form-data" action="profilePic">
                 <input type="file" name="upfile"><br/>
