@@ -44,7 +44,7 @@ public class User {
             return false;
         }
         Session session = cluster.connect("instagrim");        
-        PreparedStatement ps = session.prepare("insert into userprofiles (login,password,first_name,last_name, email, bio) Values(?,?,?,?,?,?)");
+        PreparedStatement ps = session.prepare("insert into userprofiles (login,password,first_name,last_name,email,bio) Values(?,?,?,?,?,?)");
        
         BoundStatement boundStatement = new BoundStatement(ps);
         session.execute( // this is where the query is executed
@@ -54,6 +54,54 @@ public class User {
        
         return true;
     }
+    
+    
+    
+    public LinkedList<userProfiles> getUserInfo(String user)
+    {
+    	java.util.LinkedList<userProfiles> userProfile =  null; //new java.util.LinkedList<>();
+        
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select login, first_name, last_name, picid, email, bio from userprofiles where login = ?");
+        BoundStatement boundStatement = new BoundStatement(ps);
+        ResultSet rs = null;
+        rs = session.execute(boundStatement.bind(user));
+        
+        if (rs.isExhausted()) {
+            System.out.println("No user profile returned for: " + user);
+            return null;
+    }
+    
+    else 
+    {
+    	System.out.println ("Found profile: " + user);
+        for (Row row : rs) 
+        {
+        	//userProfile = new java.util.LinkedList<userProfiles>();
+            userProfiles profile = new userProfiles();
+            
+            String username = row.getString("login");
+            String name = row.getString("first_name");
+            String surname = row.getString("last_name");
+            String email = row.getString("email");
+            String bio = row.getString("bio");
+            java.util.UUID picid = row.getUUID("picid");
+            
+    
+            profile.setUsername(username);
+            profile.setname(name);
+            profile.setsurname(surname);
+            profile.setEmail(email);
+            profile.setbio(bio);
+            profile.setUUID(picid);
+            
+                   
+            userProfile.push(profile);
+        }   
+    }
+    return userProfile;
+    }
+    
     
     public boolean IsValidUser(String username, String Password){
         AeSimpleSHA1 sha1handler=  new AeSimpleSHA1();
@@ -65,7 +113,10 @@ public class User {
             return false;
         }
         Session session = cluster.connect("instagrim");
-        PreparedStatement ps = session.prepare("select password from userprofiles where login =?");
+        PreparedStatement ps = session.prepare("select password from userprofiles where login=?");
+        System.out.println("This is your user: " + username);
+        System.out.println("This is your password: " + Password);
+        System.out.println("This is your encoded password: " + EncodedPassword);
         ResultSet rs = null;
         BoundStatement boundStatement = new BoundStatement(ps);
         rs = session.execute( // this is where the query is executed
@@ -98,58 +149,15 @@ public class User {
                  boundStatement.bind( // here you are binding the 'boundStatement'
                          username));
         if (rs.isExhausted()) {
-            System.out.println("No user found!");
+            System.out.println("No user found: " + username);
             return false;
         } else 
         {
+        	System.out.println("User " + username + " already exists!");
         	return false;
         }
     }
         
     
-        
-        public LinkedList<userProfiles> getUserInfo(String user)
-        {
-        	java.util.LinkedList<userProfiles> userProfile = new java.util.LinkedList<>(); //null;
-            
-            Session session = cluster.connect("instagrim");
-            PreparedStatement ps = session.prepare("select login, first_name, last_name, picid, email, bio from userprofiles where login = ?");
-            BoundStatement boundStatement = new BoundStatement(ps);
-            ResultSet rs = null;
-            rs = session.execute(boundStatement.bind(user));
-            
-            if (rs.isExhausted()) {
-                System.out.println("No user profile returned for: " + user);
-                return null;
-        }
-        
-        else 
-        {
-        	System.out.println ("Found profile: " + user);
-            for (Row row : rs) 
-            {
-            	//userProfile = new java.util.LinkedList<userProfiles>();
-                userProfiles profile = new userProfiles();
-                
-                String username = row.getString("login");
-                String name = row.getString("first_name");
-                String surname = row.getString("last_name");
-                String email = row.getString("email");
-                String bio = row.getString("bio");
-                java.util.UUID picid = row.getUUID("picid");
-                
-        
-                profile.setUsername(username);
-                profile.setname(name);
-                profile.setsurname(surname);
-                profile.setEmail(email);
-                profile.setBio(bio);
-                profile.setUUID(picid);
-                
-                       
-                userProfile.push(profile);
-            }   
-        }
-        return userProfile;
-        }
+       
 }

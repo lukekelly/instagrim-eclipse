@@ -9,6 +9,7 @@
 
 
 <%@page import="uk.ac.dundee.computing.aec.instagrim.stores.userProfiles"%>
+<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,7 +35,7 @@
         <%
         java.util.LinkedList<userProfiles> userProfile = (java.util.LinkedList<userProfiles>) request.getAttribute("userProfiles");
         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-        if (userInfo == null)
+        if (userProfile == null)
         {
         	%> 	<p> No Profile Found!</p>
      <%    }
@@ -61,8 +62,6 @@
                 <input type="submit" value="Press">
                      
             </form> 
-            
-            //ENTER CODE HERE TO DISPLAY THE PROFILE PICTURE
             <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
               %>
         </article>

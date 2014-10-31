@@ -35,13 +35,9 @@
                     <li>Second Name: <input type="text" name="surname"></li>
                     <li>Email: <input type="text" name="email"></li>
                     <li>Bio: <input type="text" name="bio"></li>
-                    
-                 <h3>Upload Profile Picture</h3>
-            	<form method="POST" enctype="multipart/form-data" action="UploadProfilePicture">
-                <input type="file" name="upfile"><br/>
-
-                <br/>
-                <input type="submit" value="Upload">
+                </ul>
+                </br>    
+             <input type="submit" value="Register"> 
 
         </article>
         <footer>

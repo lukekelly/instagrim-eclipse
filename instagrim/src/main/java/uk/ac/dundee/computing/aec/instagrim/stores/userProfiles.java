@@ -51,12 +51,12 @@ public class userProfiles {
     	this.surname=surname;
     }
     
-    public String getBio()
+    public String getbio()
     {
     	return bio;
     }
     
-    public void setBio(String bio)
+    public void setbio(String bio)
     {
     	this.bio=bio;
     }
@@ -81,10 +81,4 @@ public class userProfiles {
     {
     	return proPic;
     }
-
-	public static void push(userProfiles profile) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
