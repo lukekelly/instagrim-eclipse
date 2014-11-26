@@ -59,7 +59,7 @@
                 <input type="file" name="upfile"><br/>
 
                 <br/>
-                <input type="submit" value="Press">
+                <input type="submit" value="Upload Profile Picture">
                      
             </form> 
             <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
